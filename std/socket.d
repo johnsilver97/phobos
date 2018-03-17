@@ -120,25 +120,7 @@ else
     static assert(0);     // No socket support yet.
 }
 
-version(unittest)
-{
-    static assert(is(uint32_t == uint));
-    static assert(is(uint16_t == ushort));
 
-    import std.stdio : writefln;
-
-    // Print a message on exception instead of failing the unittest.
-    private void softUnittest(void delegate() @safe test, int line = __LINE__) @trusted
-    {
-        try
-            test();
-        catch (Throwable e)
-        {
-            writefln(" --- std.socket(%d) test fails depending on environment ---", line);
-            writefln(" (%s)", e);
-        }
-    }
-}
 
 /// Base exception thrown by $(D std.socket).
 class SocketException: Exception
